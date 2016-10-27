@@ -1,0 +1,58 @@
+body{
+    background-color:tan;
+    color:white; 
+}
+
+body{
+    margin-right:450px;
+    margin-top:75px;    
+    margin-left:200px;
+}
+
+table{
+    width:100%;
+    background-color:#F08080;
+    border-collapse: collapse;
+    border:5px solid white;
+}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+th {
+    border: 1px solid white;
+    color: black;
+    vertical-align: inherit;
+    text-align: center;
+    height:40px;
+    background-color: #FFFF99; 
+}
+
+td{
+    border: 1px solid white;
+    height: 32px;
+    vertical-align: inherit;
+    text-align: center;
+}
+
+h1{
+    color:black;
+}
+
+
+
+
+input {
+    width:100%;
+    padding:8px; 
+    margin:8px 0px; 
+}   
+
+form{
+    color:black; 
+}
