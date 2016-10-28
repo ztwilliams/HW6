@@ -14,6 +14,8 @@
         <%= table %>
         
         <a href="add">Add New State</a>
+        <br> <br>
+        <a href="search.jsp">Search States</a>
         
     </body>
 </html>

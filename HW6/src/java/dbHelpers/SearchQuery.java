@@ -11,25 +11,27 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.States;
+
+
+public class SearchQuery {
+    
+    private Connection conn; 
+    private ResultSet results;
+            
+    public SearchQuery() {
         
-        public class ReadQuery {
-    
-    private Connection conn;
-    private ResultSet results; 
-    
-    public ReadQuery (){
         
         Properties props = new Properties();
         InputStream instr = getClass().getResourceAsStream("dbConn.properties");
         try {
             props.load(instr);
         } catch (IOException ex) {
-            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             instr.close();
         } catch (IOException ex) {
-            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String driver = props.getProperty("driver.name");
@@ -39,29 +41,27 @@ import model.States;
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             conn = DriverManager.getConnection(url, username, passwd);
         } catch (SQLException ex) {
-            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
     
-    
-    
-    public void doRead(){
+    public void doSearch(String stateName){
         
         try {
-            String query = "Select * from States ORDER BY stateID DESC";
+            String query = "SELECT * FROM states WHERE UPPER(stateName) LIKE ? ORDER BY stateID DESC";
             
-            PreparedStatement ps = conn.prepareStatement(query); 
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "%" + stateName.toUpperCase() + "%"); 
             this.results = ps.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
     public String getHTMLTable(){
@@ -122,7 +122,7 @@ import model.States;
                 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -132,4 +132,7 @@ import model.States;
         
         return table; 
     }
+    
+    
+    
 }

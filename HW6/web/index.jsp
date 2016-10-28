@@ -9,6 +9,8 @@
     <body>
         <h1>States Database</h1>
         
-        <a href="read">View All States</a> 
+        <a href="read">View All States</a>
+        <br> <br>
+        <a href="search.jsp">Search States</a>
     </body>
 </html>
