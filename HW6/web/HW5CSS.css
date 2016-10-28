@@ -40,19 +40,36 @@ td{
     text-align: center;
 }
 
+
 h1{
     color:black;
 }
 
 
-
-
 input {
-    width:100%;
+    width:80%;
     padding:8px; 
     margin:8px 0px; 
 }   
 
+
 form{
     color:black; 
 }
+
+
+.update td {
+    border: none; 
+    height: 25px;
+    padding:10px;
+}
+
+
+.add td{
+    border:none;
+    height: 25px;
+    padding: 10px;
+}
+
+
+input[readonly]{background-color: gray;}
